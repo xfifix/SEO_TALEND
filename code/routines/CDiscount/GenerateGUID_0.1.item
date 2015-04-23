@@ -1,0 +1,57 @@
+// template routine Java
+package routines;
+
+
+public class GenerateGUID {
+
+    // Fonction retournant un GUID
+    public static String GUID() {
+    	String MyGUID = 
+    		StringHandling.RIGHT("00000000" + DataOperation.DTX(Numeric.random(0,100000000)).toString(),8) 
+    		+ "-" +
+    		StringHandling.RIGHT("0000" + DataOperation.DTX(Numeric.random(0,10000)).toString(),4) 
+    		+ "-" +
+    		StringHandling.RIGHT("0000" + DataOperation.DTX(Numeric.random(0,10000)).toString(),4) 
+    		+ "-" +
+    		StringHandling.RIGHT("0000" + DataOperation.DTX(Numeric.random(0,10000)).toString(),4) 
+    		+ "-" +
+    		StringHandling.RIGHT("000000000000" + DataOperation.DTX(Numeric.random(0,1000000000)).toString()+ DataOperation.DTX(Numeric.random(0,100)).toString(),12);
+    	return MyGUID; 
+    }
+    
+    /**
+     * liste les répertoires
+     * 
+     * @param filePath (chemin du dossier)
+     * @param liste (liste des doosiers)
+     * @return void
+     * 
+     * 
+     * {Category} GenerateGUID
+     * 
+     * {param} String(filePath) filePath : chemin du dossier
+     * 
+     * {param} java.util.List<String>(myReturnedListe) myReturnedListe : liste des doosiers
+     * 
+     * {param} java.util.Map<String, String>(relativePath) relativePath : chemin relatif
+     * 
+     */
+    
+    public static void parcoursRep(String filePath, java.util.List<String> list, java.util.Map<String, String> relativePath){
+    	java.io.File file = new java.io.File(filePath);
+    	if (file.isDirectory() && !file.getName().equals(".svn") && !file.getName().equals("bin")){
+    		list.add(file.getPath());
+        	String relativePathString = relativePath.get(filePath);
+			relativePathString += "../";
+    		java.io.File[] dirName = file.listFiles();
+    		for (int i = 0;i <= dirName.length - 1;i++){
+    			if (dirName[i].isDirectory() && !dirName[i].getName().equals(".svn")){
+    				if (relativePath.get(filePath + "\\" + dirName[i].getName()) == null){
+        				relativePath.put(dirName[i].getPath(), relativePathString);
+            			parcoursRep(dirName[i].getPath(), list, relativePath);
+    				}
+    			}
+    		}
+    	}
+    }
+}

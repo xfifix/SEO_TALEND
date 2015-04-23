@@ -1,0 +1,43 @@
+package routines;
+import java.util.ListIterator;
+import java.util.ArrayList;
+
+
+public class ArrayListMatches {
+
+
+	/**
+	 * Finds if the list contains a value checking the parameter value
+	 * @param list The list of strings to check
+	 * @param regex The regular expression to use
+	 * @return list containing the indexes of all matching entries
+	 */
+	public static String MatchesKeyword(ArrayList<String> list, String InputValue) {
+		ListIterator<String> li = list.listIterator();
+	    Boolean isBlacklist = false;
+	    String result = null;
+	    
+		while(li.hasNext() && !isBlacklist ) {
+		    String next = li.next();
+		   
+		    if(InputValue.matches(next)) {
+		    	isBlacklist = true;
+		    	result = next;
+		    	
+		    }
+		  }
+		  return result;
+	}
+}
+
+/*
+while(li.hasNext() && !isBlacklist ) {
+String next = li.next();
+if(Pattern.matches(".*\\b"+next+"\\b", InputValue)
+		|| Pattern.matches("\\b"+next+"\\b.*", InputValue)
+		|| Pattern.matches(" "+next+" ", InputValue)
+		|| Pattern.matches(next, InputValue)) {
+	isBlacklist = true;
+	result = next;
+
+*/

@@ -1,0 +1,1007 @@
+//template routine Java
+package routines;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.sql.*;
+
+
+public class MyRoutine {
+
+	public static String constructRURLPicture(String SKU,Integer pays,String index,String SizeCode)
+	{
+		
+		//pays 
+		//1 -France(CDiscount)
+		//2- Allemagne (DISCOUNT24)
+		
+		String URL="";
+		String debutURL="";
+		String partie1="";
+		String partie2="";
+		String partie3="";
+		Integer nbcar=0;
+		Integer nbcar_3=0;
+		Integer nbcar_2=0;
+		Integer nbcar_1=0;
+		
+		
+		
+
+		if (pays==1)
+		{
+		debutURL="http://ak.cdiscount.com/pdt/";
+		nbcar=SKU.length();
+		nbcar_3=nbcar-3;
+		nbcar_2=nbcar-2;
+		nbcar_1=nbcar-1;
+		
+		
+		
+		if (nbcar_3>=0 && nbcar_2>=0)
+		{
+		partie1=SKU.substring(nbcar-3, nbcar-2);
+		}
+		if (nbcar_2>=0 && nbcar_1>=0)
+		{
+		partie2=SKU.substring(nbcar-2, nbcar-1);
+		}
+		if (nbcar_1>=0 && nbcar>=0)
+		{
+		partie3=SKU.substring(nbcar-1, nbcar);
+		}
+		URL=debutURL+partie1+"/"+partie2+"/"+partie3+"/"+index+"/"+SizeCode+"/"+SKU+".jpg";
+			
+		}
+		if (pays==2)
+		{
+		debutURL="//10.10.10.226/ImageRepository/Discount24/Products/";
+		nbcar=SKU.length();
+		partie1=SKU.substring(0,3);
+		
+		
+		URL=debutURL+partie1+"000/"+SKU+"/"+SizeCode+"/"+index+".jpg";
+			
+		}
+		
+		return URL;
+	}
+	
+	
+	
+	
+	
+	public static Date getDateSubstractOneDay() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE,-1);
+		return calendar.getTime();
+	}
+
+	
+	public static String getDateSubstractOneDayString() {
+		Date d= getDateSubstractOneDay();
+		return d.toString();
+	}
+	public static Date getDateDayPerDay(int i, Date date) {
+		 //java.util.List<Date> unzippedFiles = new java.util.List<Date>();
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DATE,i);
+		return calendar.getTime();
+    }
+	
+	public static double getRoundNumber(double number) {
+		
+		
+		int i = new Double(number).intValue(); //recuperer la partie entiere
+		double decimale = number-(new Double(i).doubleValue());
+		   if (decimale<0.4)
+		        return i;
+		   else
+			    return i+1;
+				
+		
+    }
+	
+	public static java.sql.Timestamp Date_en_timestamp(Date date2){
+		/*java.sql.Timestamp t=new java.sql.Timestamp(1);
+		java.sql.Timestamp t2=new java.sql.Timestamp(1);
+		
+		t2=t.valueOf(TalendDate.formatDate("yyyy-mm-dd hh:mm:ss", date));*/	
+		Timestamp t2 = new Timestamp(date2.getTime()); 
+
+		System.out.println(t2.toString());
+		
+		return t2;
+	}
+
+	
+	
+
+	public static int getDayOfWeek(Date date) {
+		int dayOfWeek = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+		return dayOfWeek;
+    }
+	
+	public static int getDayOfYear(Date date) {
+		int dayOfYear = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+		return dayOfYear;
+    }
+	
+	
+	public static int getWeekOfYear(Date date) {
+		int weekOfYear = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+		return weekOfYear;
+    }
+	
+	public static String getWeekOfYearString(Date date) {
+		Integer weekOfYear = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
+		if (weekOfYear<10){
+			return "0" + weekOfYear.toString();
+		}else{
+			return  weekOfYear.toString();
+		}
+		
+		
+		
+    }
+	
+	
+	public static int getDifDate(Date date1,Date date2) {
+		long nbrjour = 0;
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.setTime(date1);
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(date2);
+		//System.out.println(date);
+		nbrjour = (date2.getTime()-date1.getTime())/(24*60*60*1000);
+		return (int)nbrjour;
+    }
+	
+	
+	public static int getDayOfMonth(Date date) {
+		int DayOfMonth = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		DayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+		return DayOfMonth;
+    }
+	
+	public static int getYear(Date date) {
+		int Year = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		Year = calendar.get(Calendar.YEAR);
+		return Year;
+    }
+	
+	public static int getperiodnbr(Date date) {
+		int month = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		month = calendar.get(Calendar.MONTH)+1;
+		return month;
+    }
+	
+	
+	
+	public static String getperiodnbrString (Date date) {
+		Integer month = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		month = calendar.get(Calendar.MONTH);
+		if (month<10){
+			return "0" + month.toString();
+		}else{
+		return  month.toString();
+		}
+    }
+	
+	public static String getDayEn(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		String jour = "MONDAY";
+		switch (calendar.get(Calendar.DAY_OF_WEEK))
+		{
+		case 2: jour= "MONDAY";break;
+		case 3: jour= "TUESDAY";break;
+		case 4: jour= "WEDNESDAY";break;
+		case 5: jour= "THURSDAY";break;
+		case 6: jour= "FRIDAY";break;
+		case 7: jour= "SATURDAY";break;
+		case 1: jour= "SUNDAY";break;
+		
+		}
+		return jour;
+	}
+	
+	public static String getDayFr(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		String jour = "";
+		//System.out.println(Calendar.DAY_OF_WEEK);
+		switch (calendar.get(Calendar.DAY_OF_WEEK))
+		{
+		case 2: jour= "LUNDI";break;
+		case 3: jour= "MARDI";break;
+		case 4: jour= "MERCREDI";break;
+		case 5: jour= "JEUDI";break;
+		case 6: jour= "VENDREDI";break;
+		case 7: jour= "SAMEDI";break;
+		case 1: jour= "DIMANCHE";break;
+		}
+		return jour;
+	}
+	
+	
+	public static String getperiod(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		String month = "JANUARY";
+		switch (calendar.get(Calendar.MONTH))
+		{
+		case 1: month= "JANUARY";break;
+		case 2: month= "FEBRUARY";break;
+		case 3: month= "MARCH";break;
+		case 4: month= "APRIL";break;
+		case 5: month= "MAY";break;
+		case 6: month= "JUNE";break;
+		case 7: month= "JULY";break;
+		case 8: month= "AUGUST";break;
+		case 9: month= "SEPTEMBER";break;
+		case 10: month= "OCTOBER";break;
+		case 11: month= "NOVEMBER";break;
+		case 12: month= "DECEMBER";break;
+		}
+		return month;
+	}
+	
+	
+	public static Date getDateWellFormat(Date date) {
+		return date;
+    }
+	
+	public static short parseFloatToShort(Float value) {
+        if (value == null) {
+            return 0;
+        } else {
+        	return value.shortValue();
+        }
+    }
+	
+	public static Short calculateShipQtyUnits(Short short1, Short short2, Short short3) {
+        Integer i = short1.intValue() * short2.intValue() * short3.intValue();
+		return new Short(i.shortValue());
+    }
+	
+	public static Short calculateExtendedPrice(Short short1, Short short2, Float short3) {
+		if(short3 == null){
+			Integer un = 1;
+			short3 = un.floatValue();
+		}
+		Integer i = short1.intValue() * short2.intValue() * short3.intValue();
+		return new Short(i.shortValue());
+    }
+	
+	public static Short calculateQtyCases(Short short1, Short short2) {
+        Integer i = short1.intValue() * short2.intValue();
+        return new Short(i.shortValue());
+    }
+	
+	public static int getQuarter(Date date) {
+		int month = 0;
+		int nb=0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+
+		month = calendar.get(Calendar.MONTH)+1;
+	
+		if (month>=1 && month<=3)
+			nb= 1;
+		if (month>=4 && month<=6)
+			nb= 2;
+		if (month>=7 && month<=9)
+			nb=  3;
+		if (month>=10 && month<=12)
+			nb= 4;
+
+		
+	return nb;
+		
+    }
+	
+	public static int getFiscalQuarter(Date date) {
+		int month = 0;
+		int nb=0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+
+		month = calendar.get(Calendar.MONTH);
+	
+		if (month>=4 && month<=6)
+			nb= 1;
+		if (month>=7 && month<=9)
+			nb= 2;
+		if (month>=10 && month<=12)
+			nb=  3;
+		if (month>=1 && month<=3)
+			nb= 4;
+
+		
+	return nb;
+		
+    }
+	
+	public static int getFiscalMonth(Date date) {
+		int month = 0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		month = calendar.get(Calendar.MONTH)-3;
+		if (month<1){
+		 month = month+12;
+		}
+		return month;
+	}
+	
+	public static int getFiscalYearMonth(Date date) {
+		Integer month = 0;
+		Integer year=0;
+		String fiscalyearmonth;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		//System.out.println(date);
+		month = calendar.get(Calendar.MONTH)-3;
+		year=calendar.get(Calendar.YEAR);
+		if (month<1){
+		 month = month+12;
+		 year=year-1;
+		}
+		if (month<10)
+			fiscalyearmonth=year+"0"+month.toString();
+		else
+			fiscalyearmonth=year+month.toString();
+		
+		return Integer.parseInt(fiscalyearmonth);
+		
+		
+	}
+	
+	public static int getFiscalYearQuarter(Date date) {
+		Integer month = 0;
+		Integer  year = 0;
+		Integer  nb=0;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		year=calendar.get(Calendar.YEAR);
+		month = calendar.get(Calendar.MONTH);
+	
+		if (month>=4 && month<=6)
+			nb= 1;
+		if (month>=7 && month<=9)
+			nb= 2;
+		if (month>=10 && month<=12)
+			nb=  3;
+		if (month>=1 && month<=3)
+			nb= 4;
+		if (nb.compareTo(4)==0)
+		    {
+			year=year-1;
+		    }
+		
+	return Integer.parseInt((year).toString()+nb.toString()); 
+		
+    }
+	
+	public static Date FormatDate(String value){ 
+
+		Integer year=Integer.parseInt(value.substring(0,3));
+		Integer month = Integer.parseInt(value.substring(0,3));
+		Integer Day=Integer.parseInt(value.substring(0,3));
+		
+		Date d =new Date(year,month, Day);
+		
+	return d;
+	
+	}
+	
+	
+	public static String FormatDateString(Date datevalue){
+		Integer Year=0;
+		Integer Month =0;
+		Integer Day=0;
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(datevalue);
+
+		Year=calendar.get(Calendar.YEAR);
+		Month = calendar.get(Calendar.MONTH);
+		Day=calendar.get(Calendar.DAY_OF_MONTH);
+
+		
+		//System.out.println(Year.toString());
+		//System.out.println(Month.toString());
+		//System.out.println(Day.toString());
+		//System.out.println(datevalue.toString());
+		
+		String datestring=Year.toString()+Month.toString()+Day.toString();
+		
+		
+		
+	return datestring;
+	
+	}
+	
+	public static String FormatDateStringfre(Date datevalue){
+		Integer Year=0;
+		Integer Month =0;
+		Integer Day=0;
+		String jo="";
+		String mo="";
+		String ann="";
+		String datestring="";
+		
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(datevalue);
+
+		Year=calendar.get(Calendar.YEAR);
+		Month = calendar.get(Calendar.MONTH)+1;
+		Day=calendar.get(Calendar.DAY_OF_MONTH);
+
+		if (Day<10)
+		{
+			jo ="0" + Day.toString();
+		}else{
+			jo= Day.toString();
+		}
+		
+		if (Month<10)
+		{
+			mo ="0" + Month.toString();
+		}else{
+			mo= Month.toString();
+		}
+		ann=Year.toString();
+		
+		
+		datestring=ann+"-"+mo+"-"+jo;
+		
+		String d =datestring;
+		
+	return d;
+	
+	
+	}
+	
+	
+	public static String FormatDatemod_oracle(String datevalue){
+		//System.out.println("datevalue = " + datevalue);
+		Integer Year=0;
+		Integer Month =0;
+		Integer Day=0;
+		String jo="";
+		String mo="";
+		String ann="";
+		String datestring="";
+		
+		Integer Y=Integer.parseInt(datevalue.substring(0,4));
+
+		Integer M = Integer.parseInt(datevalue.substring(5,7));
+		Integer D=Integer.parseInt(datevalue.substring(8,10));
+
+			
+		if (D<10)
+		{
+			jo ="0" + D.toString();
+		}else{
+			jo= D.toString();
+		}
+		
+		if (M<10)
+		{
+			mo ="0" + M.toString();
+		}else{
+			mo= M.toString();
+		}
+		ann=Y.toString();
+		
+		
+		datestring=ann+mo+jo;
+		
+		
+		
+	return datestring;
+	
+	}
+	
+	
+	
+	
+public static String Formatedatej(String value){
+		
+		String datestring;
+		String mois;
+		String jour;
+		
+		Integer year=Integer.parseInt(value.substring(0,4));
+		Integer month = Integer.parseInt(value.substring(4,6));
+		Integer Day=Integer.parseInt(value.substring(6,8));
+		
+		
+		if (month<10) 
+		mois="0"+month.toString();
+		else
+		mois=month.toString();
+		
+		if (Day<10) 
+			jour="0"+Day.toString();
+			else
+			jour=Day.toString();
+		
+	    datestring=year.toString()+"-"+mois+"-"+jour;		
+		
+	return datestring;
+		
+	}
+	
+	
+	
+	
+	public static Integer Formatedatejourinteger(){
+		
+		Integer Year=0;
+		Integer Month =0;
+		Integer Day=0;
+		String jo="";
+		String mo="";
+		String ann="";
+		String datestring="";
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(calendar.getTime());
+
+		Year=calendar.get(Calendar.YEAR);
+		Month = calendar.get(Calendar.MONTH)+1;
+		Day=calendar.get(Calendar.DAY_OF_MONTH);
+
+		
+		//System.out.println(Year.toString());
+		//System.out.println(Month.toString());
+		//System.out.println(Day.toString());
+		//System.out.println(datevalue.toString());
+		if (Day<10)
+		{
+			jo ="0" + Day.toString();
+		}else{
+			jo= Day.toString();
+		}
+		
+		if (Month<10)
+		{
+			mo ="0" + Month.toString();
+		}else{
+			mo= Month.toString();
+		}
+		ann=Year.toString();
+		datestring=ann+mo+jo;
+	
+		Integer d =Integer.parseInt(datestring);
+		
+	return d;
+		
+	}
+	
+	
+	
+	public static Date FormatDateC(String value){
+		
+		String datestring;
+		String mois;
+		String jour;
+		
+		Integer year=Integer.parseInt(value.substring(0,4));
+		Integer month = Integer.parseInt(value.substring(4,6));
+		Integer Day=Integer.parseInt(value.substring(6,8));
+		Date maDateparsee=null;
+		
+		if (month<10) 
+		mois="0"+month.toString();
+		else
+		mois=month.toString();
+		
+		if (Day<10) 
+			jour="0"+Day.toString();
+			else
+			jour=Day.toString();
+		
+	    datestring=year.toString()+"-"+mois+"-"+jour;
+	    //System.out.println(datestring);
+	//Date d =new Date(year,month, Day);
+		
+		try {
+
+		SimpleDateFormat dateStandard = new SimpleDateFormat("yyyy-MM-dd");
+		dateStandard.applyPattern("yyyy-MM-dd");
+			
+		maDateparsee=dateStandard.parse(datestring);
+
+		//System.out.println(maDateparsee.toString());
+			
+		}
+		catch (Exception ex) {System.out.println("Une erreur est survenue");}
+
+		return maDateparsee;
+	}
+	
+	public static String changeCustTerms(String value) {
+        if (value.length() == 1) {
+            return "00"+value;
+        } else if (value.length() == 2) {
+            return "0"+value;
+        } else {
+        	return value;
+        }
+    }
+	
+	
+	public static String reformatPhone_Fax(String value) {
+        value = value.replaceAll("-", " ");
+        value = value.replace('.', ' ');
+        value = value.replace('(', ' ');
+        value = value.replace(')', ' ');
+        if(value.indexOf("E+") > -1){
+        	return "";
+		} if (value.length() == 14 && !value.startsWith(" ")) {
+			value = value.substring(2);
+			return value;
+		} if (value.length() == 14 && value.startsWith(" ")) {
+        	value = value.substring(1,4)+" "+value.substring(6,9)+" "+value.substring(10,14);
+        	return value;
+        } if (value.length() == 13) {
+        	value = value.substring(0,3)+" "+value.substring(4,7)+" "+value.substring(9,13);
+        	return value;
+        } if (value.length() == 10) {
+			value = value.substring(0,3)+" "+value.substring(3,6)+" "+value.substring(6,10);
+			return value;
+        } if (value.length() == 10 && value.startsWith("1")) {
+			value = value.substring(0,3)+" "+value.substring(3,6)+" "+value.substring(6,10);
+			return value;
+        }else {
+        	return value;	
+        }        
+    }
+	
+	public static String cleanString(String value){
+		String cleaned ="";
+		if(value=="" || value==null){
+			cleaned=value;
+		}else{
+			value=value.replaceAll("[ÀÁÂÃÄÅàáâãäå]","A");
+			value=value.replaceAll("[èéêëÈÉÊË]","E");
+			value=value.replaceAll("[ÒÓÔÕÖòóôõö]","O");
+			value=value.replaceAll("[ÙÚÛÜùúûü]","U");
+			value=value.replaceAll("[ìíîïÎÌÍÏ]","I");
+			value=value.replaceAll("[ñÑ]","N");
+			value=value.replaceAll("[Çç]","C");
+			value=value.replaceAll("[İŸÿı]","Y");			
+			value=value.replaceAll("[¤\r\n\"]","");
+			cleaned=value;
+		}
+		return cleaned;
+	}
+	
+	/*convertit une date java au format MSSql yyyy-MM-dd hh:mm:ss*/
+	public static String FormatDateStringMSSql(Date dateValue){
+
+		String dateString;
+		int year=0,month=0,day=0,hour=0,minute=0,second=0,millisecond=0;
+		String monthString="",dayString="",hourString="",minuteString="",secondString="",millString="";
+
+		if(dateValue==null){
+				dateString="";
+		}else{
+			year=1900+dateValue.getYear();
+			month=1+dateValue.getMonth();
+			day=dateValue.getDate();
+			hour=dateValue.getHours();
+			minute=dateValue.getMinutes();
+			second=dateValue.getSeconds();
+			
+			if(month<10){	monthString="0"+month;	}else{	monthString=""+month;	}
+			
+			if(day<10){	dayString="0"+day;	}else{	dayString=""+day;	}
+			
+			if(hour<10){	hourString="0"+hour;	}else{ hourString=""+hour;	}
+			
+			if(minute<10){	minuteString="0"+minute; }else{	minuteString=""+minute;	}
+			
+			if(second<10){	secondString="0"+second;	}else{	secondString=""+second;	}
+			
+			dateString=year+"-"+monthString+"-"+dayString+" "+hourString+":"+minuteString+":"+secondString;
+		}
+	return dateString;	
+	}
+	
+	/*convertit une date java au format MSSql yyyy-MM-dd hh:mm:ss.999*/
+	public static String FormatDateStringMSSqlSubscription(Date dateValue){
+
+		String dateString;
+		int year=0,month=0,day=0,hour=0,minute=0,second=0;
+		String monthString="",dayString="",hourString="",minuteString="",secondString="";
+
+		if(dateValue==null){
+				dateString="";
+		}else{
+			year=1900+dateValue.getYear();
+			month=1+dateValue.getMonth();
+			day=dateValue.getDate();
+			hour=dateValue.getHours();
+			minute=dateValue.getMinutes();
+			second=dateValue.getSeconds();
+			
+			if(month<10){	monthString="0"+month;	}else{	monthString=""+month;	}
+			
+			if(day<10){	dayString="0"+day;	}else{	dayString=""+day;	}
+			
+			if(hour<10){	hourString="0"+hour;	}else{ hourString=""+hour;	}
+			
+			if(minute<10){	minuteString="0"+minute; }else{	minuteString=""+minute;	}
+			
+			if(second<10){	secondString="0"+second;	}else{	secondString=""+second;	}
+			
+			dateString=year+"-"+monthString+"-"+dayString+" "+hourString+":"+minuteString+":"+secondString+".999";
+		}
+	return dateString;	
+	}
+	
+    /**
+     * getMidnightDay : return the current date
+     * 
+     *  
+     * {talendTypes} Date
+     * 
+     * {Category} MyRoutine
+     */
+    public static Date getMidnightDay() {
+    	
+    	Calendar c=Calendar.getInstance();
+    	
+    	c.set(Calendar.HOUR_OF_DAY,0);
+    	c.set(Calendar.MINUTE,0);
+    	c.set(Calendar.SECOND,0);
+    	c.set(Calendar.MILLISECOND,0);
+    	
+        return c.getTime();
+    }
+    
+    /**
+     * getMidnightYesteday : return the current date
+     * 
+     *  
+     * {talendTypes} Date
+     * 
+     * {Category} MyRoutine
+     */
+    public static Date getMidnightYesteday() {
+    	
+    	Calendar c=Calendar.getInstance();
+    	
+    	c.set(Calendar.HOUR_OF_DAY,0);
+    	c.set(Calendar.MINUTE,0);
+    	c.set(Calendar.SECOND,0);
+    	c.set(Calendar.MILLISECOND,0);
+    	c.add(Calendar.SECOND,-1);
+    	
+        return c.getTime();
+    }
+	
+    public static boolean isNumeric(String value){
+		
+		try
+		{
+
+		//Float monFloat = Float.valueOf(value);
+		Float monFloat = Float.parseFloat(value);
+		return true;
+			
+		}
+		catch (NumberFormatException ex)
+		{
+			return false;
+		}
+
+	}
+ 
+    public static boolean isInteger( String input )   
+	{   
+		try  
+		{   
+			Integer.parseInt( input );   
+			return true;   
+		}   
+		catch( Exception ex)   
+		{   
+			return false;   
+		}   
+	} 
+
+    public static boolean isDate(String value)
+    {
+		try
+		{
+
+		SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd"); 
+		f.setLenient(false); 
+		Date d = f.parse(value);
+		return true;
+		
+		}
+		catch (Exception ex)
+		{
+		return false;
+		}
+	}
+    
+    public static int getMinuteDiffDate(Date dateDeb,Integer duree) {
+		double nbminute = 0;
+		//Calendar calendar1 = Calendar.getInstance();
+		//calendar1.setTime(dateDeb);
+		//Calendar calendar2 = Calendar.getInstance();
+		//calendar2.setTime(new Date());
+		//calendar1.add(Calendar.MINUTE, duree);
+		Date currentDate = new Date();
+		//System.out.println("datedeb:"+dateDeb.getTime());
+		//System.out.println("duree*60*1000:"+duree*60*1000);
+		//System.out.println("currentDate.getTime():"+currentDate.getTime());
+		nbminute = (( dateDeb.getTime() + (duree*60*1000) - currentDate.getTime() )/(60*1000));
+		//nbrjour = (date2.getTime()-date1.getTime())/(24*60*60*1000);
+		return (int)nbminute;
+    }
+    
+    /**
+     * Returns a boolean which check if a string is
+     * equals of the argument size
+     * 
+     * @author marc.negri
+     * @param size Size of string
+     * @param checkedString String which is tested
+     * 
+     * @return True or false
+     */
+    public static boolean isLengthOk(int size, String checkedString)
+    {
+    	if(checkedString == null)
+    		return false;
+    	else if(checkedString.length()== size)
+    		return true;
+    	else
+    		return false;
+    }
+    
+    /**
+     * Returns a string with spaces placed to right on a defined size
+     * 
+     *  @author marc.negri
+     *  @param string the string to pad
+     *  @param size The entire size of the string returned
+     *  
+     *  @return String a string right padded
+     */
+    public static String padRight(int size, String s)
+    {
+    	return String.format("%1$-" + size + "s", s);
+    }
+    
+    /**
+     * Returns a string with spaces placed to left on a defined size
+     * 
+     *  @author marc.negri
+     *  @param string the string to pad
+     *  @param size The entire size of the string returned
+     *  
+     *  @return String a string left padded
+     */
+    public static String padLeft(int size, String s)
+    {
+    	return String.format("%1$#" + size + "s", s);
+    }
+    
+    /**
+     * Returns a formated string defined by arguments
+     * 
+     * @author marc.negri
+     * @param String valeur : string to format
+     * @param Integer integerSize : number of caracters of the integer part (padded to the left with '0')
+     * @param Integer decimal : number of caracters of the decimal part 
+     * 
+     * @return String formated String
+     */
+   public static String DecimalDataNumeric(String valeur,int integerSize, int decimalSize)
+   {
+	   String formatedString = null;
+	   
+	   if(valeur == null || valeur.contains(""))
+	   {
+		   if(valeur.contains(","))
+			   valeur.replace(",", ".");
+		   
+		   if(valeur.contains("."))
+		   {
+			   String[] stringPart = valeur.split("\\.");
+			   //TODO catch error si + 2 part
+			   String integerPart = stringPart[0];
+			   String decimalPart = stringPart[1];
+		
+			   if(integerPart.length()<integerSize)
+			   {
+				   formatedString = StringHandling.STR('0',integerSize-integerPart.length())+integerPart;
+			   }
+			   
+			   if(decimalPart.length()> decimalSize)
+				   formatedString += "." + decimalPart.substring(0, decimalSize);
+			   else
+				   formatedString += "." + decimalPart+StringHandling.STR('0',decimalSize-decimalPart.length());
+		   }
+		   else
+		   {
+			   formatedString = StringHandling.STR('0',integerSize-valeur.length())+valeur+"."+StringHandling.STR('0',decimalSize);
+		   }
+	   }
+	   else
+	   {
+		   formatedString = StringHandling.STR('0',integerSize)+valeur+"."+StringHandling.STR('0',decimalSize);
+	   }
+	   return formatedString;
+   }
+   
+   /**
+    * Replace special char
+    * 
+    * @author marc.negri
+    * @param String value : string to format
+    * 
+    * @return String formated String
+    */
+	public static String replaceSpecialChar(String value){
+		String cleaned ="";
+		if(value=="" || value==null){
+			cleaned=value;
+		}else{
+			value=value.replaceAll("[ÀÁÂÃÄÅàáâãäå]","A");
+			value=value.replaceAll("[èéêëÈÉÊË]","E");
+			value=value.replaceAll("[ÒÓÔÕÖòóôõö]","O");
+			value=value.replaceAll("[ÙÚÛÜùúûü]","U");
+			value=value.replaceAll("[ìíîïÎÌÍÏ]","I");
+			value=value.replaceAll("[ñÑ]","N");
+			value=value.replaceAll("[Çç]","C");
+			value=value.replaceAll("[İŸÿı]","Y");			
+			value=value.replaceAll("[¤\r\n\"]","");
+			value=value.replaceAll("&"," ");
+			cleaned=value;
+		}
+		return cleaned;
+	}
+}

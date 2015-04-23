@@ -82,16 +82,37 @@
         <elementParameter xmi:id="_R8Dz67gREeS65_YMEPtgmw" field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:REPOSITORY_PROPERTY_TYPE" value="" contextMode="false"/>
       </parameters>
     </implicitContextSettings>
-    <ItemsRelations xmi:id="_g2PUMLgREeS65_YMEPtgmw">
-      <baseItem xmi:id="_g2PUMbgREeS65_YMEPtgmw" id="_xFZngLduEeSD4P0cxyZDQg" version="0.1" type="job"/>
-      <relatedItems xmi:id="_g2PUMrgREeS65_YMEPtgmw" id="DataOperation" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUM7gREeS65_YMEPtgmw" id="Relational" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUNLgREeS65_YMEPtgmw" id="StringHandling" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUNbgREeS65_YMEPtgmw" id="Mathematical" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUNrgREeS65_YMEPtgmw" id="Numeric" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUN7gREeS65_YMEPtgmw" id="TalendString" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUOLgREeS65_YMEPtgmw" id="TalendDataGenerator" version="Latest" type="routine"/>
-      <relatedItems xmi:id="_g2PUObgREeS65_YMEPtgmw" id="TalendDate" version="Latest" type="routine"/>
+    <ItemsRelations xmi:id="_tV_IoOnFEeSqJdUgMyqAQQ">
+      <baseItem xmi:id="_tV_IoenFEeSqJdUgMyqAQQ" id="_foijMOc-EeSha-a0A_lAxQ" version="0.1" type="job"/>
+      <relatedItems xmi:id="_tV_IounFEeSqJdUgMyqAQQ" id="GenerateGUID" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_Io-nFEeSqJdUgMyqAQQ" id="DataOperation" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IpOnFEeSqJdUgMyqAQQ" id="StringHandling" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IpenFEeSqJdUgMyqAQQ" id="TalendDateUD" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IpunFEeSqJdUgMyqAQQ" id="DateOracle" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_Ip-nFEeSqJdUgMyqAQQ" id="Numeric" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IqOnFEeSqJdUgMyqAQQ" id="ArrayListMatches" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IqenFEeSqJdUgMyqAQQ" id="MyRoutine" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IqunFEeSqJdUgMyqAQQ" id="ReplaceSpecialCharUD" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_Iq-nFEeSqJdUgMyqAQQ" id="TalendString" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IrOnFEeSqJdUgMyqAQQ" id="StringHandlingUD" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IrenFEeSqJdUgMyqAQQ" id="DataOperationUD" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IrunFEeSqJdUgMyqAQQ" id="Relational" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_Ir-nFEeSqJdUgMyqAQQ" id="SuppCaracteres" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IsOnFEeSqJdUgMyqAQQ" id="Mathematical" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IsenFEeSqJdUgMyqAQQ" id="TalendDate" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IsunFEeSqJdUgMyqAQQ" id="TalendDataGenerator" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_Is-nFEeSqJdUgMyqAQQ" id="RemoveStopWord" version="Latest" type="routine"/>
+    </ItemsRelations>
+    <ItemsRelations xmi:id="_tV_ItOnFEeSqJdUgMyqAQQ">
+      <baseItem xmi:id="_tV_ItenFEeSqJdUgMyqAQQ" id="_xFZngLduEeSD4P0cxyZDQg" version="0.1" type="job"/>
+      <relatedItems xmi:id="_tV_ItunFEeSqJdUgMyqAQQ" id="DataOperation" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_It-nFEeSqJdUgMyqAQQ" id="Relational" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IuOnFEeSqJdUgMyqAQQ" id="StringHandling" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IuenFEeSqJdUgMyqAQQ" id="Numeric" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IuunFEeSqJdUgMyqAQQ" id="Mathematical" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_Iu-nFEeSqJdUgMyqAQQ" id="TalendString" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IvOnFEeSqJdUgMyqAQQ" id="TalendDate" version="Latest" type="routine"/>
+      <relatedItems xmi:id="_tV_IvenFEeSqJdUgMyqAQQ" id="TalendDataGenerator" version="Latest" type="routine"/>
     </ItemsRelations>
     <migrationTask xmi:id="_QJFaYLgREeS65_YMEPtgmw" id="org.talend.designer.core.ui.preferences.migration.ChangeMysqlVersionForProjectSetting" breaks="5.2.0" version="5.1.3" status="ok"/>
     <migrationTask xmi:id="_QJFaYbgREeS65_YMEPtgmw" id="org.talend.designer.core.ui.preferences.migration.ChangeOracleVersionForProjectSetting" breaks="5.2.0" version="5.2.1" status="ok"/>
